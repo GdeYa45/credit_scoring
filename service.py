@@ -10,7 +10,7 @@ class ClientData(BaseModel):
     car: bool
 
 app = FastAPI()
-model = joblib.load("model.pkl")
+model = joblib.load("/model/model.pkl")
 
 @app.post('/score')
 def score(data: ClientData):

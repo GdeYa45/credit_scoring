@@ -1,0 +1,10 @@
+FROM python:3.13-slim
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir pandas scikit-learn joblib
+
+COPY train.py .
+COPY data ./data
+
+CMD ["python", "train.py"]

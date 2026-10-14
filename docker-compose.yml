@@ -1,0 +1,22 @@
+services:
+  train:
+    build:
+      context: .
+      dockerfile: dockerfile.train
+    volumes:
+      - model_data:/model
+
+  api:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - model_data:/model
+    depends_on:
+      train:
+        condition: service_completed_successfully
+
+volumes:
+  model_data:
